@@ -1,20 +1,22 @@
-const express = require('express');
-const route = require('./route')
-var partials = require('express-partials');
-const app = express();
-const port = 3000;
+const express = require('express')
+const path = require('path')
+const app = express()
+const port = 3000
 
-app.set('views', __dirname + '/views');// 设置模板位置
-app.set('view engine', 'ejs');// 设置渲染引擎为EJS
-app.use(partials());
-app.use(express.static(__dirname + '/public'))// 设置公共目录
+const authRouter = require('./routes/auth')
 
-app.get('/login', route.login);
-app.get('/logout', route.logout);
-app.get('/register', route.register);
-app.get('/forgotpassword', route.forgotpassword);
-app.get('/user/:username', route.userInfo);
-app.post('/login', route._login);
-app.post('/register', route._register);
+app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/auth', authRouter)
 
-app.listen(port, () => console.log(`Usercenter listening on port ${port}!`));
+
+/**
+ * @function Login
+ * @description POST
+ */
+//app.post('/login', (req, res) => {
+//  res.send('Hello World!')
+//})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
