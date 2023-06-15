@@ -1,9 +1,6 @@
 const model = require('../models/auth')
 
 exports.auth_login = (req, res) => {
-    model.add({
-
-    })
     res.send('NA');
 }
 
