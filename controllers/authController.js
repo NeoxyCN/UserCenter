@@ -22,6 +22,7 @@ exports.auth_register = (req, res) => {
         code: 0,
         message: "register success"
     })
+    
 }
 
 exports.auth_forgot = (req, res) => {
